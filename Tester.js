@@ -23,7 +23,7 @@ var Tester = function (logger, options) {
 
   this.getUrl = function (path) {
     var url_parts = url.parse(path, true);
-    var query = qs.parse(url_parts.search.substr(1),  { strictNullHandling: true });
+    var query = url_parts.search ? qs.parse(url_parts.search.substr(1),  { strictNullHandling: true }): {};
     var params = qs.stringify(this.merge({}, this.globals.parameters, this.req.parameters, query), { strictNullHandling: true });
 
     var host_proto = (url_parts.host
